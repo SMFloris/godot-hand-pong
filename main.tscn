@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvrwrh16j0w50"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_o8lxt"]
+[ext_resource type="Script" path="res://ball.gd" id="2_uesqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0trws"]
+size = Vector2(20, 89)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cxtkw"]
+b = Vector2(1152, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dk7w1"]
+radius = 10.198
+
+[node name="Node2D" type="Node2D"]
+visibility_layer = 3
+script = ExtResource("1_o8lxt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Player1" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(27, 334)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+shape = SubResource("RectangleShape2D_0trws")
+
+[node name="ColorRect" type="ColorRect" parent="Player1/CollisionShape2D"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -44.0
+offset_right = 10.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player2" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1124, 326)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+shape = SubResource("RectangleShape2D_0trws")
+
+[node name="ColorRect" type="ColorRect" parent="Player2/CollisionShape2D"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -44.0
+offset_right = 10.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+visible = false
+shape = SubResource("SegmentShape2D_cxtkw")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+visible = false
+position = Vector2(1, 648)
+shape = SubResource("SegmentShape2D_cxtkw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+script = ExtResource("2_uesqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_dk7w1")
